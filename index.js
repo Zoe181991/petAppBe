@@ -16,7 +16,7 @@ const adminRoute = require('./routes/adminRoute')
 
 require('dotenv').config()
 
-app.use(cors({origin:'http://localhost:3000', credentials:true}))
+app.use(cors({origin:['http://localhost:3000, https://pet-app-fe.vercel.app'], credentials:true}))
 app.use(express.json())
 app.use(cookieParser());
 app.use('./userImages', express.static('userImages'))
