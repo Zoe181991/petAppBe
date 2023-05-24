@@ -197,18 +197,13 @@ async function getFosteredPets(req, res) {
 async function Logout(req,res){
     try{
         console.log(req.cookies)
-        res.cookie('token', "")
-        res.clearCookie('token');
-        res.clearCookie('token', { 
-            domain: process.env.NODE_ENV === "production" && 'https://pet-app-fe.vercel.app', 
-            path: '/',
+        res.cookie('token', "", { 
+            maxAge: 100000 * 20 * 60, 
             httpOnly: true,
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             secure: process.env.NODE_ENV === "production" ? true : false,
     
-        });
-
-        res.setHeader('Set-Cookie', "");
-        res.setHeader('Cookie', "");
+        })
         res.status(200).send("cookie was cleard")
 
     } catch (err){
@@ -225,3 +220,19 @@ async function Logout(req,res){
 module.exports = { Logout, Login, SignUp, getUserInfo, updateUserById, deleteUserById, 
     updatePassword, getUserByIdParams, getAllUsers, getSavedPets, updateUserInfo,
     getAdoptedPets, getFosteredPets }
+
+
+    
+
+        // res.cookie('token', "")
+        // res.clearCookie('token');
+        // res.clearCookie('token', { 
+        //     domain: process.env.NODE_ENV === "production" && 'https://pet-app-fe.vercel.app', 
+        //     path: '/',
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === "production" ? true : false,
+    
+        // });
+
+        // res.setHeader('Set-Cookie', "");
+        // res.setHeader('Cookie', "");
