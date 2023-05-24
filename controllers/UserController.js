@@ -198,7 +198,7 @@ async function Logout(req,res){
     try{
         console.log(req.cookies)
 
-        res.clearCookie('username', '/', null, false, true);
+        res.clearCookie('token', '/', null, false, true);
 
         //  res.clearCookie('token',  { 
         //     Path: '/users/login',
