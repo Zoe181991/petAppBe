@@ -51,14 +51,13 @@ async function Login(req, res, next) {
         }
         if (verifyUser) {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' })
-            
-            
-            
-            res.cookie('token', token, { maxAge: 100000 * 20 * 60, 
+            console.log(token)
+            res.cookie('token', token, { 
+                maxAge: 100000 * 20 * 60, 
                 httpOnly: true,
                 sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
                 secure: process.env.NODE_ENV === "production" ? true : false,
-            
+        
             })
             res.send({ ok: true, id: user._id })
           }
