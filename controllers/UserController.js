@@ -204,7 +204,7 @@ async function Logout(req,res){
         //     secure: process.env.NODE_ENV === "production" ? true : false,
     
         // })
-        res.clearCookie('token').status(200).send("cookie was cleard")
+        res.clearCookie('token', '/', null, false, true).status(200).send("cookie was cleard")
 
     } catch (err){
         console.log(err)
