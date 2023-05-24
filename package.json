@@ -27,7 +27,8 @@
     "multer-cloud-storage": "^3.0.0",
     "multer-storage-cloudinary": "^4.0.0",
     "path": "^0.12.7",
-    "react-bootstrap": "^2.7.4"
+    "react-bootstrap": "^2.7.4",
+    "vercel": "^29.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
