@@ -196,6 +196,7 @@ async function getFosteredPets(req, res) {
 
 async function Logout(req,res){
     try{
+        console.log(req.cookies)
         res.clearCookie('token');
         res.status(200).send("cookie was cleard")
 
