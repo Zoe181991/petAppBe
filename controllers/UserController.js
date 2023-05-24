@@ -198,7 +198,7 @@ async function Logout(req,res){
     try{
         console.log(req.cookies)
          res.clearCookie('token',  { 
-            Path: '/users/logout',
+            Path: '/users/login',
             httpOnly: true,
             sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             secure: process.env.NODE_ENV === "production" ? true : false,
