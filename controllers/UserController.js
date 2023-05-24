@@ -51,7 +51,6 @@ async function Login(req, res, next) {
         }
         if (verifyUser) {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' })
-            console.log(token)
             res.cookie('token', token, { 
                 maxAge: 100000 * 20 * 60, 
                 httpOnly: true,
@@ -59,7 +58,7 @@ async function Login(req, res, next) {
                 secure: process.env.NODE_ENV === "production" ? true : false,
         
             })
-            res.send({ ok: true, id: user._id })
+            res.send({ ok: true, id: user._id})
           }
     }
     catch (err) {
@@ -196,8 +195,14 @@ async function getFosteredPets(req, res) {
 }
 
 async function Logout(req,res){
-  res.clearCookie('token');
-  res.status(200).send("cookie was cleard")
+    try{
+        res.clearCookie('token');
+        res.status(200).send("cookie was cleard")
+
+    } catch (err){
+        res.status(500).send(err)
+    }
+  
 }
 
 
