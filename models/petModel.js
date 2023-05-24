@@ -140,7 +140,7 @@ async function addOwner(req,res,next){
         next();
     } catch(err){
         console.log(err)
-        res.send(err)
+        next(err)
     }
    }
 
@@ -156,12 +156,10 @@ async function addOwner(req,res,next){
   
     } catch(err){
         console.log(err)
-        res.status(400).send(err)
     }
    }
 
-   async function addPet(newPet){
- 
+   async function addPetModel(newPet){
     try{
         console.log(newPet)
         const register = new Pet (newPet)
@@ -169,7 +167,6 @@ async function addOwner(req,res,next){
         return register;
     } catch(err){
         console.log(err)
-        res.send(err)
     }
 
 
@@ -187,5 +184,5 @@ async function addOwner(req,res,next){
 
 
 module.exports = {findPetById, changeToFosteredStatus, addOwner, clearOwner, clearOwnerById, changeToAvailableStatusById,
-    changeToAvailableStatus, addPet, changeToAdoptedStatus, removeFromFoster, deletePetModel}
+    changeToAvailableStatus, addPetModel, changeToAdoptedStatus, removeFromFoster, deletePetModel}
 

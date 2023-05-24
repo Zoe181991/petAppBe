@@ -5,7 +5,7 @@ const Pet = require('../models/petSchema')
 const User = require('../models/userSchema')
 
 const { deleteUserModel } = require('../models/userModel')
-const { deletePetModel } = require('../models/petModel')
+const { deletePetModel, addPetModel } = require('../models/petModel')
 
 const app = express()
 
@@ -120,7 +120,7 @@ async function addPet(req, res) {
     try {
         console.log(req.file.path)
         const newPet = {...req.body, picture: req.file.path}
-        const register = petModel.addPet(newPet)
+        const register = addPetModel(newPet)
         if(register){
         console.log("This Pet has been succsesfully registered", register)
         res.status(201).send(register);
