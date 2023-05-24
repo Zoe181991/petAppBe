@@ -197,7 +197,7 @@ async function getFosteredPets(req, res) {
 async function Logout(req,res){
     try{
         console.log(req.cookies)
-        res.setCookie('token', "")
+        res.cookie('token', "")
         res.clearCookie('token');
         res.clearCookie('token', { 
             domain: process.env.NODE_ENV === "production" && 'https://pet-app-fe.vercel.app', 
@@ -212,6 +212,7 @@ async function Logout(req,res){
         res.status(200).send("cookie was cleard")
 
     } catch (err){
+        console.log(err)
         res.status(500).send(err)
     }
   
