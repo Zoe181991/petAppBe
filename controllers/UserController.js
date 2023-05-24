@@ -197,14 +197,14 @@ async function getFosteredPets(req, res) {
 async function Logout(req,res){
     try{
         console.log(req.cookies)
-        res.cookie('token', "", { 
-            maxAge: 100000 * 20 * 60, 
-            httpOnly: true,
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-            secure: process.env.NODE_ENV === "production" ? true : false,
+        // res.clearCookie('token',  { 
+        //     maxAge: 100000 * 20 * 60, 
+        //     httpOnly: true,
+        //     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        //     secure: process.env.NODE_ENV === "production" ? true : false,
     
-        })
-        res.status(200).send("cookie was cleard")
+        // })
+        res.clearCookie('token').status(200).send("cookie was cleard")
 
     } catch (err){
         console.log(err)
