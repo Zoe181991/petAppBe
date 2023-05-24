@@ -197,14 +197,17 @@ async function getFosteredPets(req, res) {
 async function Logout(req,res){
     try{
         console.log(req.cookies)
+        res.clearCookie('token');
         res.clearCookie('token', { 
             domain: process.env.NODE_ENV === "production" && 'https://pet-app-fe.vercel.app', 
+            path: '/',
             httpOnly: true,
             secure: process.env.NODE_ENV === "production" ? true : false,
     
         });
 
-        res.setHeader('Set-Cookie', [`token=; Max-Age=0; Domain=your.domain.com; Path=/; HttpOnly; Secure`]);
+        res.setHeader('Set-Cookie', "");
+        res.setHeader('Cookie', "");
         res.status(200).send("cookie was cleard")
 
     } catch (err){
