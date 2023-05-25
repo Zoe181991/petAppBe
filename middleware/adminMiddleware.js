@@ -12,7 +12,6 @@ require('dotenv').config()
 async function authAdmin(req, res, next) {
   console.log("auth admin")
   console.log(req.cookies.token)
-
     if(!req.cookies.token) {
       return res.status(401).send('Token Required')
      }
@@ -36,6 +35,7 @@ async function authAdmin(req, res, next) {
    
 
   }
+
 
   async function removeOwnerFromPets(req, res, next){
     console.log("hi", req.params.id)

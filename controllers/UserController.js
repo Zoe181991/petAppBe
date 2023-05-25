@@ -46,7 +46,6 @@ async function Login(req, res, next) {
             err.statusCode=400
             err.statusMessage='Incorrect Password!'
             return next(err)
-            
             // return res.status(400).statusMessage('Incorrect Password!').send()
         }
         if (verifyUser) {
@@ -66,6 +65,35 @@ async function Login(req, res, next) {
         res.status(500).send(err.messege)
     }
 }
+
+// async function Login(req, res, next) {
+//     console.log(req.body, "login request from user")
+//     try {
+//         const { email, password } = req.body
+//         const user = await findUserByEmail(email.toLowerCase())
+//         if (user === null) {
+//             console.log("Check email")
+//             return res.status(500).send("This email doesn't match a registered user")
+//         }
+//         const verifyUser = await bcrypt.compare(password, user.password)
+//         if (!verifyUser) {
+//             const err = new Error('Incorrect Password!')
+//             err.statusCode=400
+//             err.statusMessage='Incorrect Password!'
+//             return next(err)
+            
+//         }
+//         if (verifyUser) {
+//             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' })
+//             res.cookie('token', token, { maxAge: 100000 * 20 * 60, httpOnly: true })
+//             res.send({ ok: true, id: user._id, token })
+//           }
+//     }
+//     catch (err) {
+//         console.log(err.message)
+//         res.status(500).send(err.messege)
+//     }
+// }
 
 
 
@@ -197,16 +225,10 @@ async function getFosteredPets(req, res) {
 async function Logout(req,res){
     try{
         console.log(req.cookies)
-
-        res.clearCookie('token', '/', null, false, true);
-
-        //  res.clearCookie('token',  { 
-        //     Path: '/users/login',
-        //     httpOnly: true,
-        //     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-        //     secure: process.env.NODE_ENV === "production" ? true : false,
-    
-        // })
+        res.clearCookie('token', {
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+           secure: process.env.NODE_ENV === "production" ? true : false,
+        });
         res.status(200).send("cookie was cleard")
 
     } catch (err){
@@ -239,3 +261,11 @@ module.exports = { Logout, Login, SignUp, getUserInfo, updateUserById, deleteUse
 
         // res.setHeader('Set-Cookie', "");
         // res.setHeader('Cookie', "");
+
+               //  res.clearCookie('token',  { 
+        //     Path: '/users/login',
+        //     httpOnly: true,
+        //     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        //     secure: process.env.NODE_ENV === "production" ? true : false,
+    
+        // })
