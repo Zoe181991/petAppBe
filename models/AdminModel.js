@@ -11,18 +11,12 @@ async function tableResults(req, res) {
 
         console.log("Getting pets for dashboard")
         console.log(sumResults.length, req.query.limit * (req.query.page)  )
-        if( sumResults.length >= req.query.limit * (req.query.page)  ){
             const result = await Pet.find()
             .sort({name: 1})
             .skip(req.query.page > 0 ? ( ( req.query.page - 1 ) * req.query.limit) : 0)
             .limit(req.query.limit)
             console.log(result.length)
             res.status(200).send(result);
-
-        }else {
-            res.status(204).send("No more results");
-        }
-        
 
     }
     catch (err) {
@@ -37,16 +31,12 @@ async function tableResultsUsers(req, res) {
         const sumResults = await User.find()
         console.log("Getting pets for dashboard")
         console.log(sumResults.length, req.query.limit * (req.query.page)  )
-       
             const result = await User.find()
             .sort({name: 1})
             .skip(req.query.page > 0 ? ( ( req.query.page - 1 ) * req.query.limit) : 0)
             .limit(req.query.limit)
             console.log(result.length)
             res.status(200).send(result);
-
-        
-        
 
     }
     catch (err) {
