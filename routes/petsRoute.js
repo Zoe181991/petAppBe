@@ -8,7 +8,7 @@ const { auth} = require('../middleware/validateUserInfo')
 const { authAdmin} = require('../middleware/adminMiddleware')
 const { addOwner, clearOwner,
     changeToFosteredStatus, changeToAvailableStatus, changeToAdoptedStatus,
-    removeFromFoster, } = require('../models/petModel')
+    removeFromFoster, getAdoptedPets } = require('../models/petModel')
 const {  getPetByType} = require('../models/SearchPetModal')
 const {upload } = require('../middleware/imagesMiddleware')
 const multer = require('multer');
@@ -16,10 +16,16 @@ const multer = require('multer');
 
 //Get Pets info (list and single)
 router.get('/', PetsController.getAllPets )
+
+router.get('/adopted', PetsController.getAllAdoptedPets )
+router.get('/available', PetsController.getAllAvailablePets )
+
 router.get('/:id',  PetsController.getPetByIdParams )
 
 //Search
 router.get('/search/:type', getPetByType)
+
+
 
 
 //User functionalities (SavePet, FosterPet and AdoptPet and remove)

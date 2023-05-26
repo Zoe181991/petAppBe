@@ -22,8 +22,32 @@ async function getPetByIdParams(req, res) {
 async function getAllPets(req, res) {
 
     try {
-        console.log("Getting all users")
+        console.log("Getting all pets")
         const result = await Pet.find()
+        res.status(200).send(result);
+    }
+    catch (err) {
+        res.send(err.messege)
+    }
+}
+
+async function getAllAdoptedPets(req, res) {
+
+    try {
+        console.log("Getting all adopted pets")
+        const result = await Pet.find({ adoptionStatus: { $in: ['Adopted', 'Fostered'] } })
+        res.status(200).send(result);
+    }
+    catch (err) {
+        res.send(err.messege)
+    }
+}
+
+async function getAllAvailablePets(req, res) {
+
+    try {
+        console.log("Getting all adopted pets")
+        const result = await Pet.find({ adoptionStatus: 'Available' })
         res.status(200).send(result);
     }
     catch (err) {
@@ -158,8 +182,8 @@ async function removeAdoptededPet(req, res) {
 
 
 
-module.exports = { getPetByIdParams, getAllPets,
-    savePetToUser, removeSavedPet,
+module.exports = { getPetByIdParams, getAllPets, getAllAdoptedPets,
+    savePetToUser, removeSavedPet, getAllAvailablePets,
     adoptPetUser,  removeAdoptededPet,
     fosterPetUser, removeFosteredPet,
      }

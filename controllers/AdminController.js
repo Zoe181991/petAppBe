@@ -121,7 +121,7 @@ async function addPet(req, res) {
         console.log(req.file.path)
         const newPet = {...req.body, picture: req.file.path}
         const register = addPetModel(newPet)
-        if(register){
+        if(register.length>1){
         console.log("This Pet has been succsesfully registered", register)
         res.status(201).send(register);
         }     
