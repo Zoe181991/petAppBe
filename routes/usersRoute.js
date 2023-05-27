@@ -21,6 +21,8 @@ router.get('/logout', UserController.Logout);
 //READ - get all users
 router.get('/', UserController.getAllUsers );
 
+
+
 //READ - get user by id
 router.get('/:id', auth, UserController.getUserByIdParams );
 
