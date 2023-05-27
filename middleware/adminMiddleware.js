@@ -10,6 +10,7 @@ require('dotenv').config()
 
 
 async function authAdmin(req, res, next) {
+  
   console.log("auth admin")
   console.log(req.cookies.token)
     if(!req.cookies.token) {
