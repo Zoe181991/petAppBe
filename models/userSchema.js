@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
   first_name: {
     type: String,
-    required: true
-  }
-  ,
+    required: true,
+  },
   last_name: {
     type: String,
     required: true,
@@ -16,7 +15,6 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     required: true,
     unique: true,
-
   },
   phone_number: {
     type: Number,
@@ -25,17 +23,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     min: 6,
     max: 12,
-    required: true
+    required: true,
   },
-
 
   date_created: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   bio: {
     type: String,
-    default: ""
+    default: "",
   },
 
   picture: {
@@ -46,36 +43,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     enums: ["User", "Admin"],
     default: "User",
-    required: true
+    required: true,
   },
 
   savedPets: {
     type: [Schema.Types.ObjectId],
-    ref: 'Pet'
+    ref: "Pet",
   },
   adoptedPets: {
     type: [Schema.Types.ObjectId],
-    ref: 'Pet'
+    ref: "Pet",
   },
   fosteredPets: {
     type: [Schema.Types.ObjectId],
-    ref: 'Pet'
+    ref: "Pet",
   },
-
-
-
-
 });
 
-module.exports = mongoose.model('User', userSchema)
-
-
-
-//middleware using mongoose
-// userSchema.pre('checkData', async function(){
-//   console.log("checking data")
-// })
-
-// userSchema.post('newData', async function(){
-//   console.log("data is valid")
-// })
+module.exports = mongoose.model("User", userSchema);
