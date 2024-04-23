@@ -12,7 +12,6 @@ async function getPetByIdParams(req, res) {
   const petId = req.params.id;
   const filter = { _id: petId };
   const petInfo = await Pet.findOne(filter);
-  console.log(petInfo);
   res.send(petInfo);
 }
 
@@ -21,7 +20,7 @@ async function getAllPets(req, res) {
     const result = await Pet.find();
     res.status(200).send(result);
   } catch (err) {
-    res.send(err.messege);
+    res.send(err.message);
   }
 }
 
@@ -32,7 +31,7 @@ async function getAllAdoptedPets(req, res) {
     });
     res.status(200).send(result);
   } catch (err) {
-    res.send(err.messege);
+    res.send(err.message);
   }
 }
 
@@ -41,7 +40,7 @@ async function getAllAvailablePets(req, res) {
     const result = await Pet.find({ adoptionStatus: "Available" });
     res.status(200).send(result);
   } catch (err) {
-    res.send(err.messege);
+    res.send(err.message);
   }
 }
 
@@ -54,7 +53,6 @@ async function savePetToUser(req, res) {
       { $addToSet: { savedPets: req.body.petId } },
       { new: true }
     );
-    console.log(userAfterUpdate);
     const getSavedPets = await User.findOne(filter)
       .populate("savedPets")
       .exec();
@@ -72,7 +70,6 @@ async function fosterPetUser(req, res) {
       { $addToSet: { fosteredPets: req.params.petId } },
       { new: true }
     );
-    console.log(userAfterUpdate);
     const getFosteredPets = await User.findOne(filter)
       .populate("fosteredPets")
       .exec();
@@ -90,7 +87,6 @@ async function adoptPetUser(req, res) {
       { $addToSet: { adoptedPets: req.params.petId } },
       { new: true }
     );
-    console.log(userAfterUpdate);
     const getAdoptedPets = await User.findOne(filter)
       .populate("adoptedPets")
       .exec();
@@ -109,7 +105,6 @@ async function removeSavedPet(req, res) {
       { new: true }
     );
 
-    console.log(userAfterUpdate);
     res.status(200).send(userAfterUpdate.savedPets);
   } catch (err) {
     console.log(err);

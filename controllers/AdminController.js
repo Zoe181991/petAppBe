@@ -32,7 +32,6 @@ async function deleteUser(req, res) {
         `The user ${confirm.first_name} ${confirm.last_name} with has been deleted`
       );
   } catch (err) {
-    console.log(err);
     res.status(500).send(err);
   }
 }
@@ -43,7 +42,6 @@ async function updateUserToAdmin(req, res) {
       { role: "Admin" },
       { new: true }
     );
-    console.log(userAfterUpdate);
     res.status(200).send(userAfterUpdate);
   } catch (err) {
     console.log(err);
@@ -58,7 +56,6 @@ async function updateAdminToUser(req, res) {
       { role: "User" },
       { new: true }
     );
-    console.log(userAfterUpdate);
     res.status(200).send(userAfterUpdate);
   } catch (err) {
     console.log(err);
@@ -77,7 +74,6 @@ async function updatePetsInfoImage(req, res) {
     });
 
     if (petAfterUpdate) {
-      console.log("This Pet has been succsesfully updated", petAfterUpdate);
       res.status(200).send(petAfterUpdate);
     }
   } catch (err) {
@@ -94,7 +90,6 @@ async function updatePetsInfo(req, res) {
         new: true,
       }
     );
-    console.log(petAfterUpdate);
     res.status(200).send(petAfterUpdate);
   } catch (err) {
     res.status(400).send(err);

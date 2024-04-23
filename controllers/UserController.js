@@ -60,25 +60,18 @@ async function Login(req, res, next) {
       res.send({ ok: true, id: user._id });
     }
   } catch (err) {
-    console.log(err.message);
-    res.status(500).send(err.messege);
+    res.status(500).send(err.message);
   }
 }
 
 async function updatePassword(req, res) {
   try {
-    console.log("user is trying to update password");
-    console.log(req.body.password);
     const userId = req.params.id;
-    console.log(userId);
-    // const hashedPassword = await encryptPassword(password)
-    // console.log(hashedPassword)
     const filter = { _id: userId };
     const update = { password: req.body.password };
     const userAfterUpdate = await User.findOneAndUpdate(filter, update, {
       new: true,
     });
-    console.log(userAfterUpdate);
     res.status(200).send(userAfterUpdate);
   } catch (err) {
     res.status(400).send(err);
@@ -131,7 +124,7 @@ async function getAllUsers(req, res) {
     const result = await User.find();
     res.send(result);
   } catch (err) {
-    res.send(err.messege);
+    res.send(err.message);
   }
 }
 

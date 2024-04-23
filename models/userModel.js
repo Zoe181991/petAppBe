@@ -17,12 +17,9 @@ async function createNewUserInDB(newUser) {
 async function findUserByEmail(email) {
   try {
     const emailLowerCase = email.toLowerCase();
-    console.log(emailLowerCase);
     const user = await User.findOne({ email: emailLowerCase });
-    console.log("user was found in db", user);
     return user;
   } catch (err) {
-    console.log("1234567");
   }
 }
 

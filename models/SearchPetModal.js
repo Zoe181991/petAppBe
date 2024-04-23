@@ -7,7 +7,6 @@ const User = require("./userSchema");
 async function getPetByType(req, res) {
   try {
     const pets = await Pet.find({ type: req.params.type });
-    console.log(pets);
     res.send(pets);
   } catch (err) {
     console.log(err);
@@ -15,7 +14,6 @@ async function getPetByType(req, res) {
 }
 
 async function searchPet(req, res) {
-  console.log(req.query);
   try {
     const name = req.query.name;
     const weight = req.query.weight;

@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 async function isUserNew(req, res, next) {
-  console.log("is user new?");
   const isUserNew = await findUserByEmail(req.body.email);
   if (!isUserNew) {
     return next();
@@ -28,7 +27,6 @@ async function encryptPassword(req, res, next) {
     if (err) {
       res.status(500).send(err.message);
     } else {
-      console.log(hash);
       req.body.password = hash;
       next();
     }

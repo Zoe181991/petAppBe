@@ -31,15 +31,12 @@ app.use('/admin', adminRoute)
 
 app.use((err, req, res, next)=>{
   console.error(err)
-  console.error(err.message)
-  console.error(err.statusCode)
     res.status(err.statusCode).send(err.message)
 })
 
 
 app.use('*', (req,res)=>{
     res.status(404).send({message: "Couldn't find this page!"})
-
 })
 
 

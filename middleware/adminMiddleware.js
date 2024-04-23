@@ -29,7 +29,6 @@ async function authAdmin(req, res, next) {
     res.status(401).send("This user is unauthorized");
   }
   if (isAdmin.role === "Admin") {
-    console.log("This user is an admin!");
     return next();
   }
 }

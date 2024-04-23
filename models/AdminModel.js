@@ -12,7 +12,7 @@ async function tableResults(req, res) {
       .limit(req.query.limit);
     res.status(200).send(result);
   } catch (err) {
-    res.send(err.messege);
+    res.send(err.message);
   }
 }
 
@@ -23,10 +23,9 @@ async function tableResultsUsers(req, res) {
       .sort({ name: 1 })
       .skip(req.query.page > 0 ? (req.query.page - 1) * req.query.limit : 0)
       .limit(req.query.limit);
-    console.log(result.length);
     res.status(200).send(result);
   } catch (err) {
-    res.send(err.messege);
+    res.send(err.message);
   }
 }
 
