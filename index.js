@@ -59,8 +59,4 @@ async function main() {
 
 
 
-// PORT = 8080
-// JWT_SECRET = jdsbfkjsb37864herd
-
-// MONGO_URI = mongodb+srv://admin:admin181991@clusterpet.yp3c5w9.mongodb.net/PetsApp
 
